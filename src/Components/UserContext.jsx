@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const UserContext = createContext();
 
@@ -7,7 +7,14 @@ export function useUserContext() {
 }
 
 export function UserContextProvider({ children }) {
-  const [Username, SetUsername] = useState("");
+  const [Username, SetUsername] = useState(() => {
+    const storedUsername = localStorage.getItem("username");
+    return storedUsername || "";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("username", Username);
+  }, [Username]);
 
   return (
     <UserContext.Provider value={{ Username, SetUsername }}>
@@ -15,4 +22,3 @@ export function UserContextProvider({ children }) {
     </UserContext.Provider>
   );
 }
-export default UserContext;

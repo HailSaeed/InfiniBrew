@@ -40,7 +40,7 @@ function Beers() {
   return (
     <>
       <NavBar />
-      <div className="flex flex-wrap justify-center gap-y-4 gap-x-2 bg-slate-200 pt-10">
+      <div className="flex flex-wrap justify-center gap-y-4 gap-x-2  pt-10">
         {data?.map((item, index) => (
           <div
             className="max-w-sm rounded overflow-hidden shadow-lg"
